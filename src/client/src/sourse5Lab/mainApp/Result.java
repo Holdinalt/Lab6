@@ -1,4 +1,4 @@
-package client.sourse5Lab.mainApp;
+package sourse5Lab.mainApp;
 
 public class Result {
     private String res;

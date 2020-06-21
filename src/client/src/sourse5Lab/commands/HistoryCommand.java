@@ -1,4 +1,4 @@
-package client.sourse5Lab.commands;
+package sourse5Lab.commands;
 
 import client.sourse5Lab.mainApp.Result;
 /*

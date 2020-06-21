@@ -1,11 +1,12 @@
-package client.sourse5Lab.commands;
+package sourse5Lab.commands;
 
-import client.sourse5Lab.mainApp.Result;
+
+import sourse5Lab.mainApp.Result;
+
 /*
     выводит скудную инфомарцию о командах...
  */
-public class HelpCommand implements Command {
-    ControlUnit cu;
+public class HelpCommand extends Command implements Executable {
 
     public HelpCommand(ControlUnit cu){
         cu.addCommand("help", this);
@@ -19,6 +20,7 @@ public class HelpCommand implements Command {
         }
     }
     @Override
+
     public String toString() {
         return "help : вывести справку по доступным командам";
     }

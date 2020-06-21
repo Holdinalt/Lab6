@@ -1,11 +1,14 @@
-package client.sourse5Lab.commands;
+package sourse5Lab.commands;
 
-import client.sourse5Lab.mainApp.Result;
+import sourse5Lab.factories.ConnectionManager;
+import sourse5Lab.mainApp.Result;
+
 /*
     насильно завершает работу программы
  */
-public class ExitCommand implements Command{
-    public ExitCommand(ControlUnit cu){
+public class ExitCommand extends Command implements Executable{
+    public ExitCommand(ControlUnit cu, ConnectionManager cm){
+        this.cm = cm;
         cu.addCommand("exit", this);
     }
 

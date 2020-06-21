@@ -1,16 +1,16 @@
-package client.sourse5Lab.commands;
+package sourse5Lab.commands;
 
-import client.sourse5Lab.collectionWorker.HashMapWrapper;
-import client.sourse5Lab.mainApp.Result;
+import sourse5Lab.factories.ConnectionManager;
+import sourse5Lab.mainApp.Result;
 
 /*
     команда для очистики коллекции
  */
-public class ClearCommand implements Command {
-    private HashMapWrapper mainColl;
-    public ClearCommand(ControlUnit cu, HashMapWrapper hashMapWrapper){
+public class ClearCommand extends Command implements Executable {
+    private ConnectionManager mainColl;
+    public ClearCommand(ControlUnit cu, ConnectionManager cm){
         cu.addCommand("clear", this);
-        mainColl = hashMapWrapper;
+        this.cm = cm;
     }
     @Override
     public void execute(String options, Result result) {
@@ -18,9 +18,7 @@ public class ClearCommand implements Command {
             result.writeResult("Данная команда не содержит аргументов! Запрос не будет выполнен");
             return;
         }
-        mainColl.clear();
-        result.writeResult("Коллекция очищена!");
-
+        cm.write("clear");
     }
 
     @Override

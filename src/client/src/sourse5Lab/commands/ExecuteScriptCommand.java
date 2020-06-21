@@ -1,15 +1,16 @@
-package client.sourse5Lab.commands;
+package sourse5Lab.commands;
 
 import client.sourse5Lab.exeptions.RecursionOnScriptException;
-import client.sourse5Lab.mainApp.Result;
 import client.sourse5Lab.factories.ScriptPathChecker;
+import sourse5Lab.mainApp.Result;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 /*
     Комманда загрузки скрипта
  */
-public class ExecuteScriptCommand implements Command {
+public class ExecuteScriptCommand implements Executable {
     private ControlUnit controlUnit;
     private Scanner sc;
     private File file;
@@ -31,11 +32,11 @@ public class ExecuteScriptCommand implements Command {
             sc = new Scanner(file);
             while (sc.hasNextLine()){
                 ++currLine;
-                String newxtLine = sc.nextLine();
-                if(newxtLine.isEmpty()){
+                String nextLine = sc.nextLine();
+                if(nextLine.isEmpty()){
                     continue;
                 }
-                check = Arrays.asList(newxtLine.split(" "));
+                check = Arrays.asList(nextLine.split(" "));
 
                 if(objectCreateCommandSet.contains(check.get(0))){
                     String buffer = "";
@@ -89,5 +90,6 @@ public class ExecuteScriptCommand implements Command {
     public String toString() {
         return "execute_script file_name : считать и исполнить скрипт из указанного файла.";
     }
+
 }
 

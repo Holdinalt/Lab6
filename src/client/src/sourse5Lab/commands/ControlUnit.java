@@ -1,6 +1,6 @@
-package client.sourse5Lab.commands;
+package sourse5Lab.commands;
 
-import client.sourse5Lab.mainApp.Result;
+import sourse5Lab.mainApp.Result;
 
 import java.util.*;
 /*
@@ -9,9 +9,10 @@ import java.util.*;
     при создании. Существует защита от несуществующих команд
  */
 public class ControlUnit {
-    private Map<String,Command> commandMap;
+
+    private Map<String, Executable> commandMap;
     private List<String> history;
-    public ArrayList<Command> commandList;
+    public ArrayList<Executable> commandList;
 
 
     public ControlUnit(){
@@ -20,7 +21,7 @@ public class ControlUnit {
         commandList = new ArrayList<>();
     }
 
-    public void addCommand(String name, Command command){
+    public void addCommand(String name, Executable command){
         commandMap.put(name,command);
         commandList.add(command);
     }
@@ -56,6 +57,6 @@ public class ControlUnit {
 
     }
     public void executeCommand(String name, String params, Result result){
-        commandMap.get(name).execute(params,result);
+        commandMap.get(name).execute(params, result);
     }
 }
