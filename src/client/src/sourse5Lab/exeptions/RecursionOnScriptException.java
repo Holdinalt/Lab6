@@ -1,4 +1,4 @@
-package client.sourse5Lab.exeptions;
+package sourse5Lab.exeptions;
 
 public class RecursionOnScriptException extends Exception {
 }

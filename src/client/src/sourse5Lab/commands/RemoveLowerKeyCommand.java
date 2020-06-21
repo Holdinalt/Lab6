@@ -1,15 +1,15 @@
-package client.sourse5Lab.commands;
+package sourse5Lab.commands;
 
-import collectionWorker.HashMapWrapper;
-import mainApp.Result;
+import sourse5Lab.factories.ConnectionManager;
+import sourse5Lab.mainApp.Result;
+
 /*
     удаляет все элементы из коллекции , коюч которых ниже заданного
  */
-public class RemoveLowerKeyCommand implements Command {
-    private HashMapWrapper hashMapWrapper ;
-    public RemoveLowerKeyCommand(ControlUnit cu, HashMapWrapper hashMapWrapper){
+public class RemoveLowerKeyCommand extends Command implements Executable {
+    public RemoveLowerKeyCommand(ControlUnit cu, ConnectionManager cm){
         cu.addCommand("remove_lover", this);
-        this.hashMapWrapper = hashMapWrapper;
+        this.cm = cm;
     }
     @Override
     public void execute(String options, Result result) {
@@ -18,7 +18,7 @@ public class RemoveLowerKeyCommand implements Command {
             return;
         }
         try {
-            result.writeResult(hashMapWrapper.removeLowerKey(Long.parseLong(options)));
+            cm.write("remove_lover " + options);
         } catch (NumberFormatException ex){
             result.writeResult("поступил неверный формат. Запрос не будет исполнен");
         }

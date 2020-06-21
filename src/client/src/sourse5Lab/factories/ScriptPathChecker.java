@@ -1,4 +1,4 @@
-package client.sourse5Lab.factories;
+package sourse5Lab.factories;
 
 import java.util.HashSet;
 import java.util.Set;

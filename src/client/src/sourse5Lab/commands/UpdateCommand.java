@@ -1,17 +1,15 @@
-package client.sourse5Lab.commands;
+package sourse5Lab.commands;
 
-import collectionWorker.HashMapWrapper;
-import factories.StudyGroupFactory;
-import mainApp.Result;
-import sourseDate.StudyGroup;
+import sourse5Lab.factories.ConnectionManager;
+import sourse5Lab.mainApp.Result;
+
 /*
     обновляет элемент по заданному айди
  */
-public class UpdateCommand implements Command {
-    private HashMapWrapper hashMapWrapper;
-    public UpdateCommand(ControlUnit cu , HashMapWrapper ha){
+public class UpdateCommand extends Command implements Executable {
+    public UpdateCommand(ControlUnit cu , ConnectionManager cm){
         cu.addCommand("update", this);
-        hashMapWrapper = ha;
+        this.cm = cm;
     }
     @Override
     public void execute(String options, Result result) {
@@ -19,7 +17,7 @@ public class UpdateCommand implements Command {
             result.writeResult("Данная команда не работает без аргументов! Запрос не будет выполнен");
             return;
         }
-       result.writeResult( hashMapWrapper.updateById(Long.parseLong(options), new StudyGroupFactory().createStudyGroup())) ;
+       cm.write("update " + options);
     }
 
     @Override

@@ -1,29 +1,28 @@
-package client.src.sourse5Lab.mainApp;
+package sourse5Lab.mainApp;
 
-import collectionWorker.HashMapWrapper;
-import commands.*;
-import fileWorker.FileManager;
+import sourse5Lab.commands.*;
+import sourse5Lab.commands.Executable;
+import sourse5Lab.factories.ConnectionManager;
 
 import java.net.Socket;
 
 public class CommandLoader {
-    public CommandLoader(ControlUnit cu, Socket socket){
-       Command clear = new ClearCommand(cu, hashMapWrapper);
-       Command execute = new ExecuteScriptCommand(cu);
-       Command exit = new ExitCommand(cu);
-       Command help = new HelpCommand(cu);
-       Command history = new HistoryCommand(cu);
-       Command info = new InfoCommand(cu, hashMapWrapper);
-       Command insert = new InsertCommand(cu, hashMapWrapper);
-       Command load = new LoadCommand(cu, fl);
-       Command print = new PrintFieldCommand(cu,hashMapWrapper);
-       Command removeAll = new RemoveAllByCommand(cu, hashMapWrapper);
-       Command remove = new RemoveCommand(cu, hashMapWrapper);
-       Command removeLower = new RemoveLowerKeyCommand(cu, hashMapWrapper);
-       Command save = new SaveCommand(cu,fl);
-       Command scriptAdd = new ScriptAddCommand(cu, hashMapWrapper);
-       Command show = new ShowCommand(cu, hashMapWrapper);
-       Command sum = new SumCommand(cu,hashMapWrapper);
-       Command update = new UpdateCommand(cu, hashMapWrapper);
+    public CommandLoader(ControlUnit cu, ConnectionManager cm){
+       Executable clear = new ClearCommand(cu, cm);
+       Executable execute = new ExecuteScriptCommand(cu, cm);
+       Executable exit = new ExitCommand(cu, cm);
+       Executable help = new HelpCommand(cu);
+       Executable history = new HistoryCommand(cu, cm);
+       Executable info = new InfoCommand(cu, cm);
+       Executable insert = new InsertCommand(cu, cm);
+       Executable print = new PrintFieldCommand(cu, cm);
+       Executable removeAll = new RemoveAllByCommand(cu, cm);
+       Executable remove = new RemoveCommand(cu, cm);
+       Executable removeLower = new RemoveLowerKeyCommand(cu, cm);
+       Executable save = new SaveCommand(cu, cm);
+       Executable scriptAdd = new ScriptAddCommand(cu, cm);
+       Executable show = new ShowCommand(cu, cm);
+       Executable sum = new SumCommand(cu, cm);
+       Executable update = new UpdateCommand(cu, cm);
     }
 }

@@ -1,14 +1,18 @@
 package sourse5Lab.commands;
 
-import client.sourse5Lab.mainApp.Result;
+
+import sourse5Lab.factories.ConnectionManager;
+import sourse5Lab.mainApp.Result;
+
 /*
     выводит информацию о последних выполненных командах
  */
-public class HistoryCommand implements Command {
-    ControlUnit cu;
-    public HistoryCommand(ControlUnit controlUnit){
-        cu = controlUnit;
+public class HistoryCommand extends Command implements Executable {
+    public HistoryCommand(ControlUnit controlUnit, ConnectionManager cm){
+        this.cu = controlUnit;
         cu.addCommand("history", this);
+        this.cm = cm;
+
     }
     @Override
     public void execute(String options, Result result) {
@@ -16,7 +20,7 @@ public class HistoryCommand implements Command {
             result.writeResult("Данная комада не содержит аргументов! Запрос не будет выполнен");
             return;
         }
-        result.writeResult(cu.checkHistory());
+        cm.write("history");
     }
 
     @Override

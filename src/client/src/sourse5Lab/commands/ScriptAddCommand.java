@@ -1,21 +1,20 @@
-package client.sourse5Lab.commands;
+package sourse5Lab.commands;
 
-import collectionWorker.HashMapWrapper;
-import factories.StudyGroupFactory;
-import mainApp.Result;
+
+import sourse5Lab.factories.ConnectionManager;
+import sourse5Lab.mainApp.Result;
+
 /*
     черная магия скрипта
  */
-public class ScriptAddCommand implements Command {
-    private HashMapWrapper hashMapWrapper;
-    public ScriptAddCommand(ControlUnit cu, HashMapWrapper hmw){
+public class ScriptAddCommand extends Command implements Executable {
+    public ScriptAddCommand(ControlUnit cu, ConnectionManager cm){
         cu.addCommand("script_add", this);
-        hashMapWrapper = hmw;
+        this.cm = cm;
     }
     @Override
     public void execute(String options, Result result) {
-        hashMapWrapper.addElement(new StudyGroupFactory().createStudyGroupWithParams(options));
-        result.writeResult("Объект успешно добавлен в коллекцию!");
+        cm.write("script_add " + options);
     }
 
     @Override

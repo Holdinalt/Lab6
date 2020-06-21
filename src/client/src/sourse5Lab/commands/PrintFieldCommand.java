@@ -1,15 +1,15 @@
-package client.sourse5Lab.commands;
+package sourse5Lab.commands;
 
-import collectionWorker.HashMapWrapper;
-import mainApp.Result;
+import sourse5Lab.factories.ConnectionManager;
+import sourse5Lab.mainApp.Result;
+
 /*
     выводит информацию о админах группы и соритрует по какому-то критерию
  */
-public class PrintFieldCommand implements Command {
-    private HashMapWrapper hashMapWrapper;
-    public PrintFieldCommand(ControlUnit cu, HashMapWrapper hm){
+public class PrintFieldCommand extends Command implements Executable {
+    public PrintFieldCommand(ControlUnit cu, ConnectionManager cm){
         cu.addCommand("print_admin",this);
-        hashMapWrapper = hm;
+        this.cm = cm;
     }
 
     @Override
@@ -18,7 +18,7 @@ public class PrintFieldCommand implements Command {
             result.writeResult("Данная комада не содержит аргументов! Запрос не будет выполнен");
             return;
         }
-        result.writeResult(hashMapWrapper.printAdmins());
+        cm.write("print_admin");
     }
 
     @Override

@@ -1,15 +1,15 @@
-package client.sourse5Lab.commands;
+package sourse5Lab.commands;
 
-import collectionWorker.HashMapWrapper;
-import mainApp.Result;
+import sourse5Lab.factories.ConnectionManager;
+import sourse5Lab.mainApp.Result;
+
 /*
     удаляет что-то из коллекции по определенному критерию
  */
-public class RemoveAllByCommand implements Command {
-    private HashMapWrapper hashMapWrapper;
-    public RemoveAllByCommand(ControlUnit cu, HashMapWrapper hashMapWrapper){
+public class RemoveAllByCommand extends Command implements Executable {
+    public RemoveAllByCommand(ControlUnit cu, ConnectionManager cm){
         cu.addCommand("remove_by_sbe", this);
-        this.hashMapWrapper = hashMapWrapper;
+        this.cm = cm;
     }
     @Override
     public void execute(String options, Result result) {
@@ -19,7 +19,7 @@ public class RemoveAllByCommand implements Command {
         }
         try {
 
-            result.writeResult(hashMapWrapper.removeBySBE(Integer.parseInt(options)));
+            cm.write("remove_by_sbe " + options);
         } catch (NumberFormatException ec){
             result.writeResult("поступил неверный аргумент. Команда не будет исполнена");
         }

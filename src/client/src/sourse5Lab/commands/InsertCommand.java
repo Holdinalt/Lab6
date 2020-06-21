@@ -1,17 +1,18 @@
-package client.sourse5Lab.commands;
+package sourse5Lab.commands;
 
-import client.sourse5Lab.collectionWorker.HashMapWrapper;
-import client.sourse5Lab.mainApp.Result;
-import client.sourse5Lab.factories.StudyGroupFactory;
+import sourse5Lab.commands.Command;
+import sourse5Lab.commands.ControlUnit;
+import sourse5Lab.commands.Executable;
+import sourse5Lab.factories.ConnectionManager;
+import sourse5Lab.mainApp.Result;
 /*
     Добавляет новый элемент в коллекцию с помощью фабрики
  */
 
-public class InsertCommand implements Command {
-    private HashMapWrapper hashMapWrapper;
-    public InsertCommand(ControlUnit cu, HashMapWrapper hmw){
+public class InsertCommand extends Command implements Executable {
+    public InsertCommand(ControlUnit cu, ConnectionManager cm){
         cu.addCommand("insert", this);
-        hashMapWrapper = hmw;
+        this.cm = cm;
     }
     @Override
     public void execute(String options, Result result) {

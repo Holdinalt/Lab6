@@ -1,15 +1,16 @@
-package client.sourse5Lab.commands;
+package sourse5Lab.commands;
 
-import collectionWorker.HashMapWrapper;
-import mainApp.Result;
+import sourse5Lab.factories.ConnectionManager;
+import sourse5Lab.mainApp.Result;
+
 /*
     удаляет элемент из коллекции по его ID
  */
-public class RemoveCommand implements Command {
-    HashMapWrapper hashMapWrapper ;
-    public RemoveCommand(ControlUnit cu, HashMapWrapper hw){
+public class RemoveCommand extends Command implements Executable {
+
+    public RemoveCommand(ControlUnit cu, ConnectionManager cm){
         cu.addCommand("remove" , this);
-        hashMapWrapper = hw;
+        this.cm = cm;
     }
 
     @Override
@@ -20,7 +21,7 @@ public class RemoveCommand implements Command {
         }
         try {
 
-            result.writeResult(hashMapWrapper.removeElement(Long.parseLong(options)));
+            cm.write("remove " + options);;
         } catch (NumberFormatException ec){
             result.writeResult("поступил неверный аргумент. Команда не будет исполнена");
         }

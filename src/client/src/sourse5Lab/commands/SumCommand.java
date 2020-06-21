@@ -1,13 +1,12 @@
-package client.sourse5Lab.commands;
+package sourse5Lab.commands;
 
-import collectionWorker.HashMapWrapper;
-import mainApp.Result;
+import sourse5Lab.factories.ConnectionManager;
+import sourse5Lab.mainApp.Result;
 
-public class SumCommand implements Command {
-    private HashMapWrapper hashMapWrapper;
-    public SumCommand(ControlUnit cu, HashMapWrapper hw){
+public class SumCommand extends Command implements Executable {
+    public SumCommand(ControlUnit cu, ConnectionManager cm){
         cu.addCommand("sum_sbe", this);
-        hashMapWrapper = hw;
+        this.cm =cm;
     }
     @Override
     public void execute(String options, Result result) {
@@ -15,7 +14,7 @@ public class SumCommand implements Command {
             result.writeResult("Данная комада не содержит аргументов! Запрос не будет выполнен");
             return;
         }
-        result.writeResult("Сумма: " +hashMapWrapper.sumOfElement());
+        cm.write("sum_sbe");
     }
 
     @Override

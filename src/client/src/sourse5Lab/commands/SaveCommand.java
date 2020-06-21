@@ -1,19 +1,19 @@
-package client.sourse5Lab.commands;
+package sourse5Lab.commands;
 
-import fileWorker.FileManager;
-import mainApp.Result;
+import sourse5Lab.factories.ConnectionManager;
+import sourse5Lab.mainApp.Result;
+
 /*
     сохраняет коллекцию в файл
  */
-public class SaveCommand implements Command {
-    FileManager fileManager;
-    public SaveCommand(ControlUnit cu , FileManager fileManager){
+public class SaveCommand extends Command implements Executable {
+    public SaveCommand(ControlUnit cu , ConnectionManager cm){
         cu.addCommand("save",this);
-        this.fileManager = fileManager;
+        this.cm = cm;
     }
     @Override
     public void execute(String options, Result result) {
-        fileManager.write(result);
+        cm.write("save");
     }
 
     @Override

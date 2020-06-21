@@ -1,15 +1,15 @@
-package client.sourse5Lab.commands;
+package sourse5Lab.commands;
 
-import client.sourse5Lab.collectionWorker.HashMapWrapper;
-import client.sourse5Lab.mainApp.Result;
+import sourse5Lab.factories.ConnectionManager;
+import sourse5Lab.mainApp.Result;
+
 /*
     команда, которая выводит информацию о коллекции
  */
-public class InfoCommand implements Command {
-    private HashMapWrapper hashMapWrapper;
-    public InfoCommand(ControlUnit controlUnit, HashMapWrapper hm){
+public class InfoCommand extends Command implements Executable {
+    public InfoCommand(ControlUnit controlUnit, ConnectionManager cm){
         controlUnit.addCommand("info", this);
-        hashMapWrapper = hm;
+        this.cm = cm;
     }
     @Override
     public void execute(String options, Result result) {
@@ -17,7 +17,7 @@ public class InfoCommand implements Command {
             result.writeResult("Данная комада не содержит аргументов! Запрос не будет выполнен");
             return;
         }
-        result.writeResult(hashMapWrapper.info());
+        cm.write("info");
     }
 
     @Override
